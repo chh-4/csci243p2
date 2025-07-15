@@ -1,0 +1,56 @@
+Coding Suggestions
+Development Roadmap
+This is a very large project spanning over more than three weeks time. If you do not start early and continually work on it, there is little chance you will succeed in the end. Here is a suggestion for how to proceed:
+
+Implement the stack and write a test program that verifies it works as advertised (see stack.h and stack_node.h).
+Implement the symbol table and write a test program for it (see symtab.h). Make sure that you can read, lookup, display and add symbol bindings. (It's easy to build symbol table entries by hand to test things.)
+Write the main program (see interp.h). It should handle the command line arguments, loading of the symbol table, and contain a skeleton of the main read-eval-print loop which continually prompts for expressions (and possibly displaying them back as-is) until ctrl-D is entered. Do not attempt to parse or evaluate these expressions yet.
+Implement the make_interior and make_leaf functions (see tree_node.h) so that you can begin to understand how expressions are represented.
+The rest of your time will be spent in glorious parser land (see parser.h). Start off small and see if you can parse an expression with only one token (e.g. a symbol or a decimal integer literal, yielding a leaf_node). Do not attempt to evaluate your expressions yet. Just concentrate on building the parse tree.
+Parse the arithmetic expressions next, except for ternary expressions.
+Finally, handle ternary ("?") expressions.
+Make sure you leave time to check your memory management. After parsing an expression, you should free any stack and tree memory before reading the next expression. Test with all the possible errors that can occur and always observe your program in valgrind.
+Use git frequently to commit your changes as you make them. You will be required to submit a revisions.txt file that documents your git activity.
+Your last task will be to implement expression evaluation. After your parse routine successfully returns a parse tree, you should implement the eval_tree function. Start simple! Here's a roadmap for you to follow as you implement eval_tree:
+
+Evaluate decimal integer literals and pre-defined symbols if they were read from the command-line file.
+Evaluate arithmetic operations except for the assignment operation "=" and the ternary operation "?".
+Evaluate assignment operations. Remember that an assignment operation has both a side-effect and a value.
+Finally evaluate ternary operations.
+For the last two steps above, see the pseudo-code for guidance. Remember that evaluating an expression may result in an error (such as divide by zero and referencing an unbound symbol) If this is the case, report on the error and return from eval_tree without printing a value.
+The last piece is to implement the print_infix function that displays the expression in fully-parenthesized form before the value of the expression is displayed. This is actually one of the easiest parts of this project! After you have done this, you should be able to see your output formatted properly.
+
+C Language Requirements
+ADTs
+One topic that might not have been discussed in lecture yet, but is used at the core of this project, is the notion of an Abstract Data Type (ADT). It is required for distinguishing the difference between interior and leaf nodes of the parse tree. Here is the definition of a tree_node structure in tree_node.h
+
+typedef struct tree_node_s {
+    node_type_t type;           // the type of the node (INTERIOR or LEAF)
+    char *token;                // the token that derived this node
+    void *node;                 // either an interior_node or leaf_node
+} tree_node_t;
+The parse function constructs instances of tree_nodes by calling make_leaf or make_interior. For each node, the type field will be either LEAF or INTERIOR, and the token field will be the token string popped from the stack.
+
+The node field of a tree_node is what makes this an ADT. It's a pointer to nothing, but when we create the tree_node, we want node to point to the appropriate thing depending on whether the tree_node should be a LEAF or INTERIOR. If it's a LEAF, we construct an approprate leaf_node structure using make_leaf and make node point to it. If it's an INTERIOR, we construct an appropriate interior_node structure using make_interior and make node point to it. We only need to use C casts to allow node to point to whatever node we have constructed. (We do this because the number of bytes required to construct a leaf_node is less than the number of bytes required to construct an interior_node. Allocating the same amount of space for both, perhaps by using a union, could end up being inefficient.)
+
+While there are other implementations of stacks that could be used in this project -- such as the stackADT implementation discussed in lecture -- use the one described in the provided stack.h header file for this project.
+
+Other Useful C Routines
+You will want to consider using functions from the C standard library. Here is a brief summary of the major ones:
+
+stdio.h
+fgets: For reading in the expressions in the main
+fprintf: For printing messages to standard error
+fscanf: For reading in symbols from the symbol table file
+printf: For standard output printing
+sprintf: Useful for writing a message to a string buffer
+sscanf: For extracting parts of a string in various formats
+perror: For printing a system call error message
+string.h
+strcmp: For comparing whether two strings are equal or not (used heavily whenever checking tokens against operation strings and for looking up symbols in the symbol table).
+strncpy: For copying one string into another (useful for transferring strings into symbol names).
+strtok: This is very useful for parsing a string into a sequence of tokens.
+stdlib.h
+malloc/free: For dynamic allocation/deallocation of stack_nodes, tree_nodes, and symbols .
+strtol: For extracting a string as an integer
+You may want to explore using the getline function in the GNU C library. The advantage of using getline is that you are not required to allocate a string buffer in advance. If you use this, you will need to include additional header files.

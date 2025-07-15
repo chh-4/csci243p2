@@ -1,0 +1,59 @@
+commit e7618e127d2e5d48d391586806aa3af6c570a864
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 23:53:13 2024 -0500
+
+    Done. Documentation and style fixed
+
+commit f29f87c57bd83cba81f847ad90f535760fa4aeb4
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 19:48:12 2024 -0500
+
+    Have made a lot of progress in regards to tokenizing and parsing. Need to work on the eval function more
+
+commit a69b510c5b4f660682bec16b5dfa79c37adbc8cd
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 18:17:11 2024 -0500
+
+    Tree node worked on - I think its working correctly. Going to hook this up to the interp file
+
+commit a87cd2ec8d9799eafb07b6785bdd9a067b6e1cd7
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 17:43:45 2024 -0500
+
+    Tokenization complete. Working on the parsing aspect
+
+commit 106662ef9dc745dd332e8be6d793e5500dd62501
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 16:04:51 2024 -0500
+
+    Implementing the main work of the assignment, the evaluation. Initial tests regarding printing variable's values have shown successful. Pushing onward.
+
+commit 06a1efa209cb77b7ae565f851a145b20154fda11
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 14:29:38 2024 -0500
+
+    Diplaying symbol table is working correctly
+
+commit d6c76529e35b3958377b3b81fb87050f1bb7fa0d
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 13:02:33 2024 -0500
+
+    Fixed and standardized code in stack.c, completed symtab.c
+
+commit 7ee5cb2e0bb87fdb80f63e26d3e0a5bf9860ee65
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 11:09:20 2024 -0500
+
+    Working on symtab.c. I think I went about it the wrong way but I am going to start from scratch on this file
+
+commit 769d9cea129160bd493b281d8ed3ff153e4c31ec
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Sun Nov 24 00:31:57 2024 -0500
+
+    Following dev roadmap per assignment. Completed stack.c
+
+commit 4e339e75172750adaeffea909cdae1060edc2453
+Author: Charles Henry Hutson <chh1223@rit.edu>
+Date:   Mon Nov 18 23:40:52 2024 -0500
+
+    Downloaded initial files provided by project
